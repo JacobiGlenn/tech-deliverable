@@ -14,16 +14,22 @@ function App() {
 
 	//Fetch quotes from backend API
 	const fetchQuotes = async () => { 
-		try { //attempts to fetch quotes
-			const response = await fetch("/api/quotes");
-			const data = await response.json(); //parses response as JSON
-			setQuotes(data); //updates quotes state
-			setLoading(false);
-		} catch (error) { //displays error if fetch fails
-			console.error("Error fetching quotes:", error); //writes error in console
-			setLoading(false);
-		}
-	};
+    try {
+        const response = await fetch("/api/quotes");
+        const data = await response.json();
+        
+        // Sort quotes by time (newest first)
+        const sortedQuotes = data.sort((a, b) => {
+            return new Date(b.time) - new Date(a.time);
+        });
+        
+        setQuotes(sortedQuotes);
+        setLoading(false);
+    } catch (error) {
+        console.error("Error fetching quotes:", error);
+        setLoading(false);
+    }
+};
 
 
 	//Name state management
