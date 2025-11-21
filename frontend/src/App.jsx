@@ -25,11 +25,58 @@ function App() {
 	};
 
 
-	//Name state management and form handling can be added here later
+	//Name state management
 	const [name, setName] = useState("");
 	const [message, setMessage] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [error, setError] = useState("");
+
+	//Handle form submission
+	const handleSubmit = async (e) => {
+		e.preventDefault(); //prevents stupid ass page refresh
+		
+		//validates you did everything right
+		if (!name.trim() || !message.trim()) {
+			setError("Name and message needed")
+			return;
+		}
+
+		setIsSubmitting(true); 
+		setError(""); //clears prev errors
+
+		try {
+			//Reformats to be the same as backend calls
+			const formData = new URLSearchParams();
+			formData.append("name", name)
+			formData.append("message", message);
+
+			const response = await fetch("/api/quote", {
+				method: 'POST', //no idea what this does
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: formData		
+			});
+			
+			if (response.ok) {
+				// Clear the form
+				setName('');
+				setMessage('');
+			
+				//refresh quotes list so new one is there
+				await fetchQuotes();
+			} 
+			else {
+				//Error testing
+				const errorData = await response.json();
+				setError(errorData.detail || "Error submitting quote");
+			}
+		} catch (err) {
+			setError("Network error: " + err.message);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
 	//Call fetchQuotes when component loads (initally)
 	useEffect(() => { //runs once on component load (otherwise infinite loop)
