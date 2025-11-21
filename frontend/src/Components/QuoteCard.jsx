@@ -6,11 +6,11 @@ function QuoteCard({ quote }) {
             <p className="quote-message">"{quote.message}"</p>
             <p className="quote-timestamp">
                 {new Date(quote.time).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long', 
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
+                    year: 'numeric', //Broken?
+                    month: 'long', //Broken?
+                    day: 'numeric', //Broken?
+                    hour: '2-digit', //Broken?
+                    minute: '2-digit' //Broken?
                 })}
             </p>
         </div>

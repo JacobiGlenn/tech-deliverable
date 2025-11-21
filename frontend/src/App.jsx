@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import QuoteCard from "./Components/QuoteCard";
+import QuoteForm from "./Components/QuoteForm";
 
 function App() {
-
 	//Quote state management
 
 	//store list of quotes
@@ -87,64 +88,42 @@ function App() {
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
-			<h1>Hack at UCI Tech Deliverable</h1>
-			
-			<h2>Submit a quote</h2>
-      		<form onSubmit={handleSubmit}>
-        		<label htmlFor="input-name">Name</label>
-        		<input //Name inputs
-					type="text"
-					name="name"
-					id="input-name"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					required
-        		/>
-				<label htmlFor="input-message">Quote</label>
-				<input //Quote inputs
-					type="text"
-					name="message"
-					id="input-message"
-					value={message}
-					onChange={(e) => setMessage(e.target.value)}
-					required
-				/> 
-				{/* Submit button and error display */}
-				<button type="submit" disabled={isSubmitting}> 
-					{isSubmitting ? 'Submitting...' : 'Submit'}
-				</button>
-				{error && <div className="error">{error}</div>}
-			</form>
 
-			{/* Old way of displaying quotes before API integration
-			 <h2>Previous Quotes</h2>
-			<div className="messages">
-				<p>Peter Anteater</p>
-				<p>Zot Zot Zot!</p>
-				<p>Every day</p>
-			</div>
-			*/}
+			<h1>Hack at UCI Quote Book
+				<p>Share your favorite quotes!</p> 
+			</h1> 
+			{/* ^little flair */}
 
-			<h2>Previous Quotes</h2>
-			<div className="messages">
-				{loading ? ( //if loading is true, display loading message
-					<p>Loading quotes...</p>
-				) : quotes.length === 0 ? ( //if no quotes, display no quotes message
-					<p>No quotes available.</p>
-				) : ( //else, display list of quotes
-					quotes.map((quote, index) => ( //basically a for loop
-						<div key={index} className="quote"> 
-							<p ClassName="quote-name">{quote.name}</p>
-							<p ClassName="quote-message">{quote.message}</p>
-							<p ClassName="quote-timestamp">{new Date(quote.timestamp).toLocaleString()}</p>
-						</div>
-					))
-				)}
-			</div>
+			{/* Quote submission form */}
+			<main>	
+				<QuoteForm //uses QuoteForm component (this was autofill idk man)
+					name={name}
+					message={message}
+					isSubmitting={isSubmitting}
+					onNameChange={(e) => setName(e.target.value)}
+					onMessageChange={(e) => setMessage(e.target.value)}
+					onSubmit={handleSubmit}
+				/>
 
-
-		</div> 
-	);
+				{/* Quotes section (and prev logic)*/}
+				 <section className="quotes-section">
+                    <h2>Previous Quotes ({quotes.length})</h2>
+                    
+                    <div className="messages">
+                        {loading ? (
+                            <div className="loading">Loading quotes...</div>
+                        ) : quotes.length === 0 ? (
+                            <div className="no-quotes">No quotes yet</div>
+                        ) : (
+                            quotes.map((quote, index) => (
+                                <QuoteCard key={index} quote={quote} />
+                            ))
+                        )}
+                    </div>
+                </section>
+            </main>
+        </div>
+    );
 }
 
 export default App;
