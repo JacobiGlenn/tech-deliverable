@@ -33,7 +33,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(lifespan=lifespan)
 
 
-@app.post("/quote")
+@app.post("/quote") # Submit a new quote
 def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
     """
     Process a user submitting a new quote.
@@ -45,6 +45,12 @@ def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
 
     # You may modify the return value as needed to support other functionality
     return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
+@app.get("/quotes") # Retrieve all quotes
+def get_quotes() -> list[Quote]:
+    """Retrieve all quotes from the database."""
+    return database["quotes"] 
+
 
 
 # TODO: add another API route with a query parameter to retrieve quotes based on max age
