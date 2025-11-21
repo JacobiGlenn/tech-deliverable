@@ -1,6 +1,32 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+//store list of quotes
+	const [quotes, setQuotes] = useState([]); 
+
+	//Track if quotes are loading
+	const [loading, setLoading] = useState(true);
+
+	//Fetch quotes from backend API
+	const fetchQuotes = async () => { 
+		try { //attempts to fetch quotes
+			const response = await fetch("api/quotes");
+			const data = await response.json(); //parses response as JSON
+			setQuotes(data); //updates quotes state
+			setLoading(false);
+		} catch (error) { //displays error if fetch fails
+			console.error("Error fetching quotes:", error); //writes error in console
+			setLoading(false);
+		}
+	};
+
+	//Call fetchQuotes when component loads (initally)
+	useEffect(() => { //runs once on component load (otherwise infinite loop)
+		fetchQuotes(); 
+	}, []);
+
+
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
