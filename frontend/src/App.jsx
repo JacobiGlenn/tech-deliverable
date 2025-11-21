@@ -23,7 +23,10 @@ function App() {
             return new Date(b.time) - new Date(a.time);
         });
         
-        setQuotes(sortedQuotes);
+		//limit to only 3 quotes
+		const recentQuotes = sortedQuotes.slice(0, 3);
+
+        setQuotes(recentQuotes);
         setLoading(false);
     } catch (error) {
         console.error("Error fetching quotes:", error);
