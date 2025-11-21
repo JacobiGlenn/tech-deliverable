@@ -89,14 +89,31 @@ function App() {
 			{/* TODO: include an icon for the quote book */}
 			<h1>Hack at UCI Tech Deliverable</h1>
 			
-			<h2>Write your quote here</h2>
-			{/* TODO: implement custom form submission logic to not refresh the page */}
-			<form action="/api/quote" method="post">
-				<label htmlFor="input-name">Name</label>
-				<input type="text" name="name" id="input-name" required />
-				<label htmlFor="input-message">   Quote</label>
-				<input type="text" name="message" id="input-message" required />
-				<button type="submit">Submit</button>
+			<h2>Submit a quote</h2>
+      		<form onSubmit={handleSubmit}>
+        		<label htmlFor="input-name">Name</label>
+        		<input //Name inputs
+					type="text"
+					name="name"
+					id="input-name"
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+					required
+        		/>
+				<label htmlFor="input-message">Quote</label>
+				<input //Quote inputs
+					type="text"
+					name="message"
+					id="input-message"
+					value={message}
+					onChange={(e) => setMessage(e.target.value)}
+					required
+				/> 
+				{/* Submit button and error display */}
+				<button type="submit" disabled={isSubmitting}> 
+					{isSubmitting ? 'Submitting...' : 'Submit'}
+				</button>
+				{error && <div className="error">{error}</div>}
 			</form>
 
 			{/* Old way of displaying quotes before API integration
