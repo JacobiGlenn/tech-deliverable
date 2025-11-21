@@ -89,9 +89,7 @@ function App() {
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
 
-			<h1>Hack at UCI Quote Book
-				<p>Share your favorite quotes!</p> 
-			</h1> 
+			<h1>Hack at UCI Quote Book</h1> 
 			{/* ^little flair */}
 
 			{/* Quote submission form */}
