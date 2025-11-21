@@ -11,7 +11,7 @@ function App() {
 	//Fetch quotes from backend API
 	const fetchQuotes = async () => { 
 		try { //attempts to fetch quotes
-			const response = await fetch("api/quotes");
+			const response = await fetch("/api/quotes");
 			const data = await response.json(); //parses response as JSON
 			setQuotes(data); //updates quotes state
 			setLoading(false);
@@ -31,7 +31,7 @@ function App() {
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
 			<h1>Hack at UCI Tech Deliverable</h1>
-
+			
 			<h2>Submit a quote</h2>
 			{/* TODO: implement custom form submission logic to not refresh the page */}
 			<form action="/api/quote" method="post">
@@ -42,14 +42,34 @@ function App() {
 				<button type="submit">Submit</button>
 			</form>
 
-			<h2>Previous Quotes</h2>
-			{/* TODO: Display the actual quotes from the database */}
+			{/* Old way of displaying quotes before API integration
+			 <h2>Previous Quotes</h2>
 			<div className="messages">
 				<p>Peter Anteater</p>
 				<p>Zot Zot Zot!</p>
 				<p>Every day</p>
 			</div>
-		</div>
+			*/}
+
+			<h2>Previous Quotes</h2>
+			<div className="messages">
+				{loading ? ( //if loading is true, display loading message
+					<p>Loading quotes...</p>
+				) : quotes.length === 0 ? ( //if no quotes, display no quotes message
+					<p>No quotes available.</p>
+				) : ( //else, display list of quotes
+					quotes.map((quote, index) => ( //basically a for loop
+						<div key={index} className="quote"> 
+							<p ClassName="quote-name">{quote.name}</p>
+							<p ClassName="quote-message">{quote.message}</p>
+							<p ClassName="quote-timestamp">{new Date(quote.timestamp).toLocaleString()}</p>
+						</div>
+					))
+				)}
+			</div>
+
+
+		</div> 
 	);
 }
 
