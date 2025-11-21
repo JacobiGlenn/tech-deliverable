@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-//store list of quotes
+
+	//Quote state management
+
+	//store list of quotes
 	const [quotes, setQuotes] = useState([]); 
 
 	//Track if quotes are loading
@@ -21,6 +24,13 @@ function App() {
 		}
 	};
 
+
+	//Name state management and form handling can be added here later
+	const [name, setName] = useState("");
+	const [message, setMessage] = useState("");
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [error, setError] = useState("");
+
 	//Call fetchQuotes when component loads (initally)
 	useEffect(() => { //runs once on component load (otherwise infinite loop)
 		fetchQuotes(); 
@@ -32,12 +42,12 @@ function App() {
 			{/* TODO: include an icon for the quote book */}
 			<h1>Hack at UCI Tech Deliverable</h1>
 			
-			<h2>Submit a quote</h2>
+			<h2>Write your quote here</h2>
 			{/* TODO: implement custom form submission logic to not refresh the page */}
 			<form action="/api/quote" method="post">
 				<label htmlFor="input-name">Name</label>
 				<input type="text" name="name" id="input-name" required />
-				<label htmlFor="input-message">Quote</label>
+				<label htmlFor="input-message">   Quote</label>
 				<input type="text" name="message" id="input-message" required />
 				<button type="submit">Submit</button>
 			</form>
