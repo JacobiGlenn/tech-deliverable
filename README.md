@@ -4,10 +4,10 @@ Application for Tech Team in the Hack @ UCI Club
 
 ## Tasks Completed:
 
-# Retrieving Quotes
+ Retrieving Quotes
  ✅ Created GET `/quotes` API endpoint to obtain quotes from database
  
-# Displaying Quotes  
+ Displaying Quotes  
  ✅ API call to retrieve and display quotes
  ✅ Each quote shows name, message, and date
  ✅ Separate QuoteCard component for each quote listing
