@@ -2,3 +2,15 @@
   color: red;
   margin-top: 10px;
 }
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quote-logo {
+  width: 86px;
+  height: 86px;
+}

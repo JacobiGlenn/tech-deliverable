@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import QuoteCard from "./Components/QuoteCard";
 import QuoteForm from "./Components/QuoteForm";
+import quote_logo from "./assets/quote_logo.png";
 
 function App() {
 	//Quote state management
@@ -98,7 +99,11 @@ function App() {
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
 
-			<h1>Hack at UCI Quote Book</h1> 
+			<h1>
+				<img src={quote_logo} alt="Quote Book Logo" className="quote-logo" />
+				
+			<div>Hack at UCI Quote Book </div>
+			</h1> 
 			{/* ^little flair */}
 
 			{/* Quote submission form */}
