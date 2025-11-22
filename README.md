@@ -33,14 +33,5 @@ Application for Tech Team in the Hack @ UCI Club
   - ✅ useEffect for initial data fetching
   - ✅ Controlled components for form inputs
   - ✅ Async/await for API calls (fixed the page reloading bug)
-
-   # Project Structure
-
-src/
-├── App.jsx              # Main component with state management
-├── components/
-│   ├── QuoteForm.jsx    # Form handling (separate abstraction)
-│   └── QuoteCard.jsx    # Quote display (separate abstraction)
-├── assets/
-│   └── logo.png         # Custom logo
-└── App.css              # Professional styling
+  - 
+<img width="718" height="314" alt="image" src="https://github.com/user-attachments/assets/2540779a-4e14-4b5b-b763-bbdd7295ca00" />
