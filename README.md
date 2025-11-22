@@ -35,14 +35,14 @@ Application for Tech Team in the Hack @ UCI Club
   - ✅ Async/await for API calls (fixed the page reloading bug)
 
    # Structure
-   src/
-      ├── App.jsx              # Main component with state management
-      ├── components/
-      │   ├── QuoteForm.jsx    # Form handling (separate abstraction)
-      │   └── QuoteCard.jsx    # Quote display (separate abstraction)
-      ├── assets/
-      │   └── logo.png         # Custom logo
-      └── App.css              # Professional styling (kinda...)
+  // src/
+  //    ├── App.jsx              # Main component with state management
+  //    ├── components/
+  //    │   ├── QuoteForm.jsx    # Form handling (separate abstraction)
+  //    │   └── QuoteCard.jsx    # Quote display (separate abstraction)
+  //    ├── assets/
+  //    │   └── logo.png         # Custom logo
+  //    └── App.css              # Professional styling (kinda...)
 
    
    
