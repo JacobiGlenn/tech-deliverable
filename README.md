@@ -1,6 +1,7 @@
 # Jacobi Glenn's Hack at UCI Tech Organizer Deliverable
 
 Application for Tech Team in the Hack @ UCI Club
+I made this to run locally so you need to do "npm run dev" in a backend terminal and then "python main.py" in a frontend terminal. Once you do that opent the local host link. Please enjoy my application, thank you!
 
 ## Tasks Completed:
 
